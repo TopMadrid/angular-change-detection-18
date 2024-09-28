@@ -1,0 +1,47 @@
+<p>Tema 2</p>
+<p>Directivas Personalizadas</p>
+
+<button (click)="toggleContent()">Ocultar / Mostrar. Usando directiva personalizada</button>
+
+<div *appShowIf="showContent">
+    Este contenido se mostrará si showContent es true.
+</div>
+
+
+<p>Logica avanzada en directivas estructurales</p>
+<ul>
+    <li *ngFor="let tarea of tareas">
+        <span *appRepeatTimes="3">{{ tarea.descripcion }}</span>
+    </li>
+</ul>
+
+
+<p>Directiva de Atributos</p>
+<p>En el código html se añade el atributo miAtributo</p>
+
+<div miAtributo="ValorPersonalizado">Elemento con atributo personalizado</div>
+
+<p>Directiva de Atributos</p>
+<p>Manipulación del DOM y estilos</p>
+
+<button estiloDinamico class="button__default">¡Pasa el ratón sobre mí!</button>
+
+<p>Directiva de Atributos en Combinación de Componente -  resaltar.directive</p>
+<ul>
+    <li *ngFor="let item of items" [resaltar]="item.destacar">
+        {{ item.nombre }}
+    </li>
+</ul>
+
+<p>Directiva Host para comportamiento componente</p>
+
+<button clickModificador>Haz click aquí</button>
+
+<p>Directiva Host para más comportamiento componente</p>
+
+<div estiloYEvento>
+    Pasa el ratón por encima de mí y haz click
+</div>
+
+<p>Directiva Host para otro más comportamiento componente</p>
+
