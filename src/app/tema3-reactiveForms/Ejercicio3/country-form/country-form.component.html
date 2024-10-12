@@ -1,0 +1,36 @@
+
+<p class="color__blue">Ejercicio 3</p>
+<p>Formulario Reactivo </p>
+<p>Aplicar validación dinamica a un input text según una condición:</p>
+
+<p>Cuando el valor de un input select Pais es valor===Estados Unidos</p> 
+<p>se debe mostrar un campo Codigo Postal como requerido.</p> 
+
+<form [formGroup]="formulario2" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="pais"> País: </label>
+        <select id="pais" formControlName="pais">
+            <option value="">Seleccionar país</option>
+            <option value="Estados Unidos">Estados Unidos</option>
+            <option value="Canada">Canadá</option>
+            <option value="Mexico">Mexico</option>
+        </select>
+        @if (formulario2.get('pais')!.invalid && formulario2.get('pais')!.touched){
+            {{ formulario2.get('pais')!.hasError('required')
+                ? 'Debe seleccionar un pais'
+                : ''}}
+        }
+    </div>
+
+    @if (formulario2.get('pais')!.value === 'Estados Unidos'){
+        <label for="codigoPostal">Código Postal:</label>
+        <input type="text" id="codigoPostal" formControlName="codigoPostal">
+        @if (formulario2.get('codigoPostal')!.invalid && formulario2.get('codigoPostal')){
+            {{formulario2.get('codigoPostal')!.hasError('required')
+                ? 'El código postal es requerido'
+                :'' }}
+        }
+    }
+    <button type="submit" [disabled]="formulario2.invalid">Enviar</button>
+
+</form>
