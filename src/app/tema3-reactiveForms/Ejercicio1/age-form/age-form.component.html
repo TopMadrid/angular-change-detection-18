@@ -1,0 +1,34 @@
+<p class="color__blue">Tema 3 Ejercicio 1</p>
+<p>Formulario Reactivo -
+Validación con funcion exportada  edadMayorQue</p>
+
+<p>Crea un formulario con Angular que solicite al usuario ingresar su nombre y su edad.</p>
+<p> El nombre es obligatorio y la edad debe ser un número mayor o igual a 18.</p>
+<p> Muestra mensajes de error personalizados si los campos no se completan correctamente.</p>
+
+<form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" formControlName="nombre">
+        <div *ngIf="formulario.get('nombre')?.invalid && formulario.get('nombre')?.touched">
+            {{ formulario.get('nombre')?.hasError('required') ? 'Este campo es obligatorio.' : ' '}}
+        </div>
+    </div>
+
+    <div>
+        <label for="edad">Edad:</label>
+        <input type="number" id="edad" formControlName="edad">
+        <div *ngIf="formulario.get('edad')?.invalid && formulario.get('edad')?.touched">
+            <div *ngIf="formulario.get('edad')?.hasError('required')">
+                La edad es requerida.
+            </div>
+            <div *ngIf="formulario.get('edad')?.hasError('edadInvalida')">
+                La edad debe ser un número válido. 
+            </div>
+            <div *ngIf="formulario.get('edad')?.hasError('edadMenorQuePermitida')">
+                La edad debe ser mayor o igual a 18.
+            </div>
+        </div>
+    </div>
+    <button type="submit" [disabled]="formulario.invalid">Enviar</button>
+</form>
